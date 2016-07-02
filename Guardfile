@@ -18,15 +18,14 @@
 guard :minitest, spring: true, all_on_start: false do
   # with Minitest::Unit
   watch(%r{^test/(.*)\/?test_(.*)\.rb$})
-  watch(%r{^test/test_helper\.rb$})      { 'test' }
-  watch('config/routes.rb')    { integration_tests }
-  watch(%r{^app/models/(.*)\.rb$})      { |m| "test/models/#{m[1]}_test.rb" }
-  watch(%r{^app/controllers/(.+)_controller\.rb$})        { |m| resource_tests(m[1]) }
+  watch(%r{^test/test_helper\.rb$}) { 'test' }
+  watch('config/routes.rb') { integration_tests }
+  watch(%r{^app/models/(.*)\.rb$}) { |m| "test/models/#{m[1]}_test.rb" }
+  watch(%r{^app/controllers/(.+)_controller\.rb$}) { |m| resource_tests(m[1]) }
   watch(%r{^app/views/([^/]*?)/.*\.html\.erb$}) do |matches|
-    ["test/controllers/#{matches[1]}_controller_test.rb"] +
-    integration_tests(matches[1])
+    ["test/controllers/#{matches[1]}_controller_test.rb"] + integration_tests(matches[1])
   end
-  watch(%r{^app/helpers/(.*)\.rb$})     { |m| integration_tests(m[1]) }
+  watch(%r{^app/helpers/(.*)\.rb$}) { |m| integration_tests(m[1]) }
   watch('app/views/layouts/application.html.erb') do
     'test/integration/site_layout_test.rb'
   end
@@ -41,8 +40,7 @@ guard :minitest, spring: true, all_on_start: false do
     'test/integration/users_signup_test.rb'
   end
   watch(%r{app/views/users/*}) do
-    resource_tests('users') +
-    ['test/integration/microposts_interface_test.rb']
+    resource_tests('users') + ['test/integration/microposts_interface_test.rb']
   end
   # watch(%r{^lib/(.*/)?([^/]+)\.rb$})     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
 
@@ -69,7 +67,7 @@ end
 # Returns the integration tests corresponding to the given resource.
 def integration_tests(resource = :all)
   if resource == :all
-    Dir["test/integration/*"]
+    Dir['test/integration/*']
   else
     Dir["test/integration/#{resource}_*.rb"]
   end
