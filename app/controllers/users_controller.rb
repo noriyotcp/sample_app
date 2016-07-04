@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:success] = "User deleted"
+    flash[:success] = 'User deleted'
     redirect_to user_url
   end
 
@@ -55,11 +55,10 @@ class UsersController < ApplicationController
   end
 
   def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
-    end
+    return if logged_in?
+    store_location
+    flash[:danger] = 'Please log in.'
+    redirect_to login_url
   end
 
   def correct_user
