@@ -23,9 +23,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                 password_confirmation: 'foobar' }
     end
     follow_redirect!
-    assert_template 'users/show'
-    assert is_logged_in?
+    # assert_template 'users/show'
+    # assert is_logged_in?
     assert_not flash.empty?
-    assert_equal flash[:success], 'Welcome to the Sample App!'
+    assert_equal flash[:info], 'Please check your email to activate your account.'
   end
 end
