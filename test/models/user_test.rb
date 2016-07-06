@@ -85,7 +85,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal @user.microposts.size, 0
   end
 
-  test "should follow" do
+  test 'should follow' do
     michael = users(:michael)
     archer = users(:archer)
     assert_not michael.following?(archer)
