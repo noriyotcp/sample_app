@@ -5,7 +5,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
 
-  test "micropost interface" do
+  test 'micropost interface' do
     log_in_as(@user)
     get root_path
     assert_select 'div.pagination'
@@ -18,7 +18,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation'
 
     # Picture is too large
-    content = "Picture is too large"
+    content = 'Picture is too large'
     picture = fixture_file_upload('test/fixtures/large-img.jpg', 'image/jpg')
     assert_no_difference 'Micropost.count' do
       post microposts_path, params: { micropost: { content: content, picture: picture } }
@@ -27,7 +27,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation'
 
     # Valid submission
-    content = "This micropost really ties the room together"
+    content = 'This micropost really ties the room together'
     picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: { content: content, picture: picture } }
