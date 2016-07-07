@@ -22,6 +22,7 @@ group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'rubocop', require: false
   gem 'rails_best_practices'
+  gem 'rails-timeago', '~> 2.0'
 end
 
 group :development do
@@ -29,7 +30,6 @@ group :development do
   gem 'listen',                '3.0.8'
   gem 'spring',                '1.7.1'
   gem 'spring-watcher-listen', '2.0.0'
-  gem 'rails-timeago', '~> 2.0'
 end
 
 group :test do
