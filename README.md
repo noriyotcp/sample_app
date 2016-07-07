@@ -1,3 +1,29 @@
+This is my sample application for
+[*Ruby on Rails Tutorial:
+Learn Web Development with Rails*](http://www.railstutorial.org/) with my customization.
+
+* Ruby on Rails (5.0.0)
+
+## Note
+I installed ``rails-timeago`` gem, and ``rails test`` failed with the following errors.
+
+```sh
+ActionView::Template::Error: ActionView::Template::Error: couldn't find file 'rails-timeago' with type 'application/javascript'
+```
+
+To solve this, kill ``spring`` server.
+
+```
+$ ps aux | grep spring
+$ kill -9 PID
+```
+
+After that, restart the server with ``rails s``, and then ``rails test``
+
+I'm not sure this way is correct, but keep in mind that this is the one of the solutions.
+
+--------
+
 # Ruby on Rails Tutorial sample application
 
 This is the sample application for
