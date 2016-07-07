@@ -25,7 +25,7 @@ class MicropostTest < ActiveSupport::TestCase
     assert_not @micropost.valid?
   end
 
-  test 'order should be most recent first' do
-    assert_equal microposts(:most_recent), Micropost.first
+  test 'should return same name with both .user.name and #user_name' do
+    assert_equal @micropost.user.name, @micropost.user_name
   end
 end
